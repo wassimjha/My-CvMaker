@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>My CvMaker</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>C</span>v <span>M</span>aker</h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger">
+            <div class="bar"></div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+
+
+  <!-- Hero Section  -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Craft your<span></span></h1>
+        <h1>Professional story  <span></span></h1>
+        <h1>With ease<span></span></h1>
+        <a href="#form" type="button" class="cta">Get started</a>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section  -->
+
+  <!-- Projects Section -->
+  <section id="form" >
+  <form action="insertion.php" method="post" name="f" enctype="multipart/form-data">
+  <div class="form-header">
+      <h1 class="section-title">Fill-in with your <span>information</span></h1>
+      </div>
+      <label for="profile-pic-input" id="profile-pic-label">Choose Profile Picture</label>
+      <input type="file" id="profile-pic-input" name="image" accept="image/*" onchange="previewProfilePic(event)" required>
+      <div id="profile-pic-preview">
+        <img src="default-profile-pic.jpg" alt="">
+      </div>
+
+
+    <div class="all-form">
+
+    <div class="form-container" id="formcontainer">
+    <div class="input-box">
+      <input type="text" class="input-field" placeholder="Enter your full name" required name="nom" title="Please enter your name">
+    </div>
+    <div class="input-box">
+        <input type="mail" required class="input-field" placeholder="Enter your e-mail address" name="mail" pattern="[a-zA-Z0-9._%+-]+@gmail\.com" title="Please enter a valid Gmail address">
+    </div>
+    <div class="input-box">
+      <input type="text" class="input-field" placeholder="Enter your address" name="adr" title="Please enter your address">
+  </div>
+</div>
+
+<div class="form-container" id="formcontainer">
+<div class="input-box">
+    <input type="text" class="input-field" placeholder="Enter your phone number" name="num">
+</div>
+    <div class="input-box">
+      <input type="number" class="input-field" placeholder="Enter your age" name="age">
+  </div>
+  <div class="input-box">
+    <textarea name="ed" class="input-field" placeholder="Education" required title="this field is required"></textarea>
+</div>
+</div>
+
+
+<div class="form-container" id="formcontainer">
+<div class="input-box">
+  <textarea name="exp" class="input-field" placeholder="Experience" required title="this field is required"></textarea>
+</div>
+<div class="input-box">
+  <textarea name="skills" class="input-field" placeholder="Skills" required title="this field is required"></textarea>
+</div>
+<div class="input-box">
+<textarea name="lang" class="input-field" placeholder="Language" required title="this field is required"></textarea>
+</div>
+  </div>
+
+
+</section>
+
+<section id="templates">
+  <h1 class="section-title">Choose your cv<span> Template</span></h1>
+  <div class="template">
+  <div class="template-container">
+    
+    <div class="temp"> <input type="radio" name="temp" value="cv1"><img src="img/temp1.png"></div>
+  </div>
+  <div class="template-container">
+    
+    <div class="temp"><input type="radio" name="temp" value="cv2"> <img src="img/temp2.png"></div>
+  </div>
+  <div class="template-container">
+    
+    <div class="temp"><input type="radio" name="temp" value="cv3"> <img src="img/temp3.png"></div>
+  </div>
+</div>
+
+
+
+<div class="submitcontainer"><input type="submit" class="submit" value="Generate" onclick="verif()"></div>
+</form>
+</section>
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <div class="brand">
+        <h1><span>M</span>y <span>C</span>v<span>M</span>aker</h1>
+      </div>
+      <h2>Craft Your Professional Resume Online</h2>
+      <p>Copyright © 2024 MyCvMaker. All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+  <script>
+    function previewProfilePic(event) {
+      var input = event.target;
+      var reader = new FileReader();
+      reader.onload = function() {
+        var dataURL = reader.result;
+        var preview = document.getElementById('profile-pic-preview');
+        var img = preview.querySelector('img');
+        img.src = dataURL;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+
+    function verif() {
+      const form = document.getElementById('form');
+      const phone = document.getElementsByName('num')[0];
+      const age = document.getElementsByName('age')[0];
+      const temp = document.f.temp.value;
+      if (phone.value.trim() === '' || isNaN(phone.value)) {
+          alert('Please enter a valid phone number.');
+          return false;
+      }
+      if (age.value.trim() === '' || isNaN(age.value)) {
+          alert('Please enter a valid age.');
+          return false;
+      }
+      if (temp === '') {
+          alert('Please choose your cv template.');
+          return false;
+      }
+    }
+  </script>
+</body>
+
+</html>
